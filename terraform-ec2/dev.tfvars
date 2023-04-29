@@ -1,5 +1,3 @@
-
-#Instance vars
 ami_id="ami-0a695f0d95cefc163"
 
 instance_type="t2.micro"
@@ -12,7 +10,6 @@ tags={
     }
 
 
-#Security group vars
 sg_name = "tfprod-sgdocker"
 
 ingress_rule = [

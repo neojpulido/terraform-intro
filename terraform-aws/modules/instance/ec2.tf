@@ -2,20 +2,20 @@ provider "aws"{
     region="us-east-2"
 }
 
-resource "aws_instance" "tfprod-ubuntu-docker" {
-    ami=var.v_ami
-    instance_type =var.v_instance_type
-    tags = var.v_tags
-    key_name = "ubuntu-docker-key"
-    security_groups = [aws_security_group.tfprod-sg-ubuntu-docker.name]
+resource "aws_instance" "tfprod_docker" {
+    ami=var.ami_id
+    instance_type =var.instance_type
+    tags = var.tags
+    key_name = var.key_name
+    security_groups = [aws_security_group.tfprod_sgdocker.name]
 }
 
-resource "aws_security_group" "tfprod-sg-ubuntu-docker" {
-  name=var.v_sg_name
+resource "aws_security_group" "tfprod_sgdocker" {
+  name=var.sg_name
  
   dynamic "ingress" {
     iterator = ingress
-    for_each = var.v_ingress_rules
+    for_each = var.ingress_rule
     content {
         description      = ingress.value.description
         from_port        = ingress.value.from_port
@@ -28,7 +28,7 @@ resource "aws_security_group" "tfprod-sg-ubuntu-docker" {
 
   dynamic "egress" {
     iterator = egress
-    for_each = var.v_egress_rules
+    for_each = var.egress_rule
     content {
       from_port        = egress.value.from_port
       to_port          = egress.value.to_port

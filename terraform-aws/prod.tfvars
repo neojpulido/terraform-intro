@@ -1,39 +1,43 @@
 
 #Instance vars
-v_ami="ami-0a695f0d95cefc163"
-v_instance_type="t2.micro"
+ami_id="ami-0a695f0d95cefc163"
 
-v_tags={
-        Name="tfprod-ubuntu-docker", 
+instance_type="t2.micro"
+
+key_name = "tfprod-dockerkey"
+
+tags={
+        Name="tfprod-docker", 
         Environment="Prod"
     }
 
 
 #Security group vars
-v_sg_name = "tfprod-sg-ubuntu-docker"
+sg_name = "tfprod-sgdocker"
 
-v_ingress_rules = [
+ingress_rule = [
     {
-        description      = "Inbound rule ssh"
+        description      = "SSH"
         from_port        = 22
         to_port          = 22
         protocol         = "TCP"
         cidr_blocks      = ["0.0.0.0/0"]
     },
     {
-        description      = "Ibound rules http"
+        description      = "HTTP"
         from_port        = 80
         to_port          = 80
         protocol         = "TCP"
         cidr_blocks      = ["0.0.0.0/0"]
     }
 ]
-v_egress_rules = [
+egress_rule = [
     {
-        description      = "Outbound rule ssh"
+        description      = "SSH"
         from_port        = 22
         to_port          = 22
         protocol         = "TCP"
         cidr_blocks      = ["0.0.0.0/0"]
     },
 ]
+
