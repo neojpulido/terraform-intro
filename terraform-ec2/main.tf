@@ -2,7 +2,7 @@ provider "aws" {
   region = "us-east-2"
 }
 module "app_platzi" {
-    source = "/Volumes/DATA/Repos/terraform-modules/aws-ec2-instance/"
+    source = "github.com/neojpulido/terraform-modules/aws-ec2-instance"
     ami_id= var.ami_id
     instance_type =var.instance_type
     key_name = var.key_name
